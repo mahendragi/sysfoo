@@ -20,6 +20,7 @@ pipeline {
         echo 'step 3'
         sh 'mvn package -DskipTests'
         archiveArtifacts 'target/*.war'
+        archiveArtifacts 'target/*.war'
       }
     }
 
