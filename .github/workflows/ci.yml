@@ -6,6 +6,13 @@ on:
       - main
   pull_request:
 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Docker image tag'
+        required: false 
+        default: 'latest'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -96,11 +103,4 @@ jobs:
         docker tag docker.io/${{ vars.DOCKERHUB_USERNAME }}/sysfoo:$COMMIT_HASH docker.io/${{ vars.DOCKERHUB_USERNAME }}/sysfoo:latest
         docker push docker.io/${{ vars.DOCKERHUB_USERNAME }}/sysfoo:$COMMIT_HASH
         docker push docker.io/${{ vars.DOCKERHUB_USERNAME }}/sysfoo:latest
-
-workflow_dispatch:
-  inputs:
-    image_tag:
-      description: 'Docker image tag'
-      required: false
-      default: 'latest'
 
